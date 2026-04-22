@@ -1,0 +1,83 @@
+========================================
+  ROADMAP — TO-DO API com FastAPI
+========================================
+
+FASE 1 — AMBIENTE
+-----------------
+[ ] Instalar Python 3.11+
+[ ] Criar pasta do projeto
+[ ] Criar venv:  python -m venv venv
+[ ] Ativar venv: source venv/bin/activate  (Win: venv\Scripts\activate)
+[ ] Instalar:    pip install fastapi uvicorn sqlalchemy python-jose passlib[bcrypt]
+[ ] Criar requirements.txt: pip freeze > requirements.txt
+
+Estrutura de pastas:
+  todo-api/
+  ├── main.py
+  ├── models.py
+  ├── database.py
+  ├── auth.py
+  ├── routes/
+  │   ├── tasks.py
+  │   └── users.py
+  ├── requirements.txt
+  └── .gitignore
+
+FASE 2 — BANCO DE DADOS (database.py + models.py)
+--------------------------------------------------
+[ ] Configurar conexão SQLite com SQLAlchemy (database.py)
+[ ] Criar modelo User: id, username, email, hashed_password
+[ ] Criar modelo Task: id, title, description, completed, owner_id
+[ ] Criar tabelas: Base.metadata.create_all(bind=engine)
+
+FASE 3 — AUTENTICAÇÃO (auth.py)
+--------------------------------
+[ ] POST /auth/register — recebe username+senha, salva com bcrypt hash
+[ ] POST /auth/login    — valida senha, retorna JWT token
+[ ] Criar função get_current_user() para proteger rotas
+
+FASE 4 — CRUD DE TAREFAS (routes/tasks.py)
+-------------------------------------------
+[ ] GET    /tasks       — listar tarefas do usuário logado
+[ ] POST   /tasks       — criar nova tarefa
+[ ] GET    /tasks/{id}  — buscar tarefa por ID
+[ ] PUT    /tasks/{id}  — editar título ou marcar como feita
+[ ] DELETE /tasks/{id}  — deletar tarefa
+
+FASE 5 — MAIN.PY
+-----------------
+[ ] Criar app FastAPI
+[ ] Incluir routers de tasks e users
+[ ] Testar tudo em: http://localhost:8000/docs  (Swagger automático)
+[ ] Rodar: uvicorn main:app --reload
+
+FASE 6 — GITHUB
+----------------
+[ ] Criar .gitignore (adicionar: venv/, *.db, __pycache__/)
+[ ] Escrever README.md com: descrição, como rodar, lista de endpoints
+[ ] git init → git add . → git commit -m "initial commit"
+[ ] Criar repo no GitHub e subir
+
+FASE 7 — DEPLOY (grátis)
+--------------------------
+[ ] Criar conta no Render (render.com)
+[ ] Conectar repositório GitHub
+[ ] Configurar start command: uvicorn main:app --host 0.0.0.0 --port 8000
+[ ] Pegar URL pública e colocar no README e no currículo
+
+========================================
+  TECNOLOGIAS USADAS
+========================================
+  Python 3.11+  FastAPI  SQLAlchemy
+  SQLite  JWT (python-jose)  bcrypt
+  Uvicorn  GitHub  Render
+
+========================================
+  O QUE VOCÊ APRENDE
+========================================
+  - REST API (GET, POST, PUT, DELETE)
+  - Banco de dados com ORM
+  - Autenticação com JWT
+  - Estrutura de projeto real
+  - Deploy em produção
+========================================
